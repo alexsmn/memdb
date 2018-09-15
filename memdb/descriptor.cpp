@@ -43,6 +43,38 @@ const char* Descriptor::GetString(const void* rec, unsigned field) const {
                                        fields_[field].offset);
 }
 
+bool Descriptor::SetNull(void* rec, unsigned field) const {
+  assert(field < num_fields_);
+
+  char* ptr = reinterpret_cast<char*>(rec) + fields_[field].offset;
+  switch (fields_[field].type) {
+    case DB_UINT8:
+      *reinterpret_cast<DBUInt8*>(ptr) = NULL_UINT8;
+      return true;
+    case DB_UINT16:
+      *reinterpret_cast<DBUInt16*>(ptr) = NULL_UINT16;
+      return true;
+    case DB_UINT32:
+      *reinterpret_cast<DBUInt32*>(ptr) = NULL_UINT32;
+      return true;
+    case DB_STRING:
+      *ptr = '\0';
+      return true;
+    case DB_BOOL:
+      *reinterpret_cast<DBBool*>(ptr) = NULL_BOOL;
+      return true;
+    case DB_FLOAT:
+      *reinterpret_cast<DBFloat*>(ptr) = NULL_FLOAT;
+      return true;
+    case DB_TID:
+      *reinterpret_cast<TID*>(ptr) = NULL_TID;
+      return true;
+    default:
+      assert(false);
+      return false;
+  }
+}
+
 bool Descriptor::SetUInt32(void* rec, unsigned field, DBUInt32 value) const {
   assert(field < num_fields_);
 

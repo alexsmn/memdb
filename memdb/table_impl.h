@@ -22,7 +22,8 @@ class TableImpl : public Table {
   // Table
   virtual void NewRecord(void* rec) const {
     assert(rec);
-    reinterpret_cast<Record*>(rec)->Clear();
+    for (unsigned i = 0; i < descriptor_.field_count(); ++i)
+      descriptor_.SetNull(rec, i);
   }
 
  private:

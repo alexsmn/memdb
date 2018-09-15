@@ -30,6 +30,7 @@ class Descriptor {
   DBUInt32 GetUInt32(const void* rec, unsigned field) const;
   const char* GetString(const void* rec, unsigned field) const;
 
+  bool SetNull(void* rec, unsigned field) const;
   bool SetUInt32(void* rec, unsigned field, DBUInt32 value) const;
   bool SetString(void* rec, unsigned field, const char* text) const;
   bool SetValue(void* rec, const FieldValue& value) const;
