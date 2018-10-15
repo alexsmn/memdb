@@ -12,10 +12,10 @@ namespace memdb {
 class TableAccessor;
 class TableUpdateInfo;
 
-struct TableScheme {
+struct TableSchema {
   typedef std::vector<Field> Fields;
 
-  TableScheme() : original_version(0), record_size(0) {}
+  TableSchema() : original_version(0), record_size(0) {}
 
   unsigned original_version;
   size_t record_size;
