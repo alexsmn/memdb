@@ -17,6 +17,7 @@ static const unsigned short FIELD_VIRT = 1 << 0;
 static const unsigned short FIELD_NS   = 1 << 1;
 
 struct Field {
+  const char* name;
   uint8_t field_id;
   uint8_t packed_field_id;
   size_t offset;

@@ -255,9 +255,18 @@ const Field* Descriptor::FindField(FieldId field_id) const {
 }
 
 const Field* Descriptor::FindPackedField(FieldId field_id) const {
-  for (unsigned i = 0; i < num_fields_; ++i)
+  for (unsigned i = 0; i < num_fields_; ++i) {
     if (fields_[i].packed_field_id == field_id)
       return &fields_[i];
+  }
+  return NULL;
+}
+
+const Field* Descriptor::FindFieldByName(std::string_view name) const {
+  for (unsigned i = 0; i < num_fields_; ++i) {
+    if (fields_[i].name == name)
+      return &fields_[i];
+  }
   return NULL;
 }
 
