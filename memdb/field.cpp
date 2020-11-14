@@ -2,6 +2,8 @@
 
 #include "base/format.h"
 
+#include <cstring>
+
 namespace memdb {
 
 namespace {
